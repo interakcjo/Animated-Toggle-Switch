@@ -1,0 +1,62 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+}
+
+.page-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: darken(blue, 45%);
+}
+
+.animated-toggle {
+  position: relative;
+  &__input {
+    opacity: 0;
+    visibility: hidden;
+  }
+  &__control {
+    display: block;
+    width: 100px;
+    height: 50px;
+    background: white;
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    transition: box-shadow 0.5s ease;
+    &::before {
+      display: block;
+      content: "";
+      width: 45px;
+      height: 45px;
+      border-radius: 100%;
+      background: red;
+      position: absolute;
+      top: calc(50% - 45px / 2);
+      left: 5px;
+      transition: 0.2s linear;
+    }
+  }
+}
+
+.animated-toggle__input {
+  &:checked {
+    & + .animated-toggle__control {
+      box-shadow: 0 0 60px rgba(lighten(green, 15%), 0.8);
+      &::before {
+        transform: translateX(45px);
+        background: lighten(green, 15%);
+      }
+    }
+  }
+}
